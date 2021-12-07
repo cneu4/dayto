@@ -63,6 +63,7 @@ function Login() {
   return (
     <div className="App">
       <div>
+        <img src="DayToPat_Logo.png" width="300" height="300"/>
         <h3 style={{"color": "white"}}>  Registriere dich </h3>
         <input
           placeholder="Email..."
@@ -84,7 +85,7 @@ function Login() {
            onChange={handleChange} />
           Institution?
         </label>
-        <p>Is "My Value" checked? {checked.toString()}</p>
+        <p style={{"color": "white"}}>Tierheim: {checked.toString()}</p>
       </div>
 
       <div>
