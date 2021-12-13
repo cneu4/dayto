@@ -35,6 +35,32 @@
   align-items: center;
   margin: auto;
   width: 100%;
+  size: 10%;
+}
+
+.buttonL {
+  width: 250px;
+  height: 60px;
+  color: white;
+  background-color: green;
+  font-size: xx-large;
+}
+
+.buttonD {
+  width: 250px;
+  height: 60px;
+  color: white;
+  background-color: red;
+  font-size: xx-large;
+}
+
+.buttonLO {
+  width: 150px;
+  height: 50px;
+  font-size: x-large;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 @keyframes App-logo-spin {

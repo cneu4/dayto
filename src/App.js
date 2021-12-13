@@ -1,16 +1,27 @@
 import "./App.css";
-import Login from "./components/Login";
-import {auth} from "./firebase-config";
 import Frontpage from "./components/Frontpage";
-//import { useAuthState } from "react-firebase-hooks/auth";
+import Login from "./components/Login";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import React, { useState } from "react";
+
 
 function App() {
-  //const [user] = useAuthState(auth)
-  return (
-    <Login/>
-    //<Frontpage/>
-  );
-}
+  const [user] = useState({});
+  const auth = getAuth();
+  //const user = auth.currentUser;
+    if (user) {
+      return <Frontpage/> 
+    } else {
+      return  <Login/> 
+    }
+  };
+  
+ 
+
+    
+    
+  
+
 
 
 export default App;

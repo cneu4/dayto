@@ -9,6 +9,8 @@ import "../App.css";
 import { auth } from "../firebase-config";
 
 
+
+
 function Login() {
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -55,7 +57,7 @@ function Login() {
       window.alert("Dieser User existiert nicht")
     }
   };
-
+  
   const logout = async () => {
     await signOut(auth);
   };
@@ -115,3 +117,4 @@ function Login() {
 }
 
 export default Login;
+
