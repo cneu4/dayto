@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -6,14 +6,18 @@ import {
   signOut,
 } from "firebase/auth";
 import "./App.css"
-import { auth } from "./firebase-config";
-
+import { auth, db } from "./firebase-config";
+import SendMessage from './SendMessage'
+import { collection, query, where, onSnapshot, limit, orderBy, QuerySnapshot } from "firebase/firestore";
+import SignOut from "./SignOut";
+import { Route } from "react-router-dom";
 
 
 
 
 
 function App() {
+  
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
   const [loginEmail, setLoginEmail] = useState("");
@@ -22,8 +26,19 @@ function App() {
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
-  };
-
+  }
+  const scroll = useRef()
+    const [messages, setMessages] = useState([])
+    useEffect(() => {
+      const q = query(collection(db, "messages"), orderBy("createdAt", "desc"), limit(50));
+      const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
+        const messages = QuerySnapshot.docs;
+        })
+      });
+      
+    
+  
+  
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
@@ -64,17 +79,20 @@ function App() {
     signOut(auth);
   };
   
+
   
   
-  if (user) {                                                                                        
-    return (                                                                      //FRONTPAGE
+ 
+  
+  if (user) {                    
+  return (                                                                      //FRONTPAGE
       <div className="App">
           <div>
               <button onClick={logout}className="buttonLO">
                   Ausloggen
                   </button>
               <div>
-                  <img src="d.png" />
+                  <img src="d.png" alt="ja" />
                   <button className="buttonL">
                       Like
                   </button>
@@ -82,18 +100,21 @@ function App() {
                       Dislike
                   </button>
               </div>
+              <button >
+                      Chat
+                  </button>
               <h4 style={{"color": "white"}}> Eingeloggt: {user?.email}</h4>
           </div>    
       </div>
 
-  );
-      
-    
-  } else {
+  );  
+} 
+
+  else {
       return (                                                                    //LOGINPAGE
       <div className="App">
         <div>
-          <img src="DayToPat_Logo.png" width="300" height="300"/>
+          <img src="DayToPat_Logo.png"alt="" width="300" height="300"/>
           <h3 style={{"color": "white"}}>  Registriere dich </h3>
           <input
             placeholder="Email..."
@@ -141,9 +162,9 @@ function App() {
 
         <button onClick={logout}> Abmelden </button>
       </div>
-  );
-}
-}
+    );
+  }
+  }
 
 
 
