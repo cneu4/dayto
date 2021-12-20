@@ -17,6 +17,8 @@ import {
   BrowserRouter,
   MemoryRouter
 } from "react-router-dom";
+import Frontpage from "./Frontpage";
+import Layout from "./Layout";
 
 
 
@@ -93,32 +95,18 @@ export default function App() {
   if (user) {                    
   return (                                                                      //FRONTPAGE
       <div className="App">
-          <div>
-              <button onClick={logout}className="buttonLO">
-                  Ausloggen
-                  </button>
-              <div>
-                  <img src="d.png" alt="ja" />
-                  <button className="buttonL">
-                      Like
-                  </button>
-                  <button className="buttonD">
-                      Dislike
-                  </button>
-              </div>
+        <div>
               <BrowserRouter>
-              <Link to="Chat">
-                <button type="button">
-                  Chat
-                </button>
-              </Link>
-                <Routes>        
-                  <Route path="Chat" element={<Chat/>}/>
+                <Routes>
+                  <Route path="/" element={<Layout/>} />
+                  <Route path="frontpage" element={<Frontpage/>} />    
+                  <Route path="chat" element={<Chat/>}/>
                 </Routes>
               </BrowserRouter>
-              <h4 style={{"color": "white"}}> Eingeloggt: {user?.email}</h4>
-          </div>    
-      </div>
+              <h4 className="userMail" style={{"color": "white"}}> Eingeloggt: {user?.email}</h4>
+            </div>  
+      </div>    
+      
 
   );  
 } 
