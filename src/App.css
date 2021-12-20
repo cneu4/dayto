@@ -44,6 +44,10 @@
   color: white;
   background-color: green;
   font-size: xx-large;
+  position: absolute;
+  bottom: 10%;
+  right: 50%;
+  cursor: pointer;
 }
 
 .buttonD {
@@ -52,6 +56,10 @@
   color: white;
   background-color: red;
   font-size: xx-large;
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  cursor: pointer;
 }
 
 .buttonLO {
@@ -61,6 +69,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  cursor: pointer;
 }
 .layoutBP {
   width: 150px;
@@ -94,6 +103,11 @@
   transform: translate(-50%, -50%);
   margin: 0 auto;
   font-size: x-large;
+}
+
+.headerD {
+  color: white;
+  font-size: 1.5cm;
 }
 
 @keyframes App-logo-spin {

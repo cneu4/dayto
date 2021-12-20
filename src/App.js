@@ -10,15 +10,14 @@ import { auth, db } from "./firebase-config";
 import { collection, query, onSnapshot, limit, orderBy} from "firebase/firestore";
 import Chat from "./Chat"
 import {
-  Switch,
   Route,
   Link,
   Routes,
   BrowserRouter,
-  MemoryRouter
 } from "react-router-dom";
 import Frontpage from "./Frontpage";
-import Layout from "./Layout";
+
+
 
 
 
@@ -91,16 +90,31 @@ export default function App() {
   
   
  
-  
-  if (user) {                    
-  return (                                                                      //FRONTPAGE
+  //wenn user eingeloggt ist
+  if (user) {                   
+  return (                                                                      //FRONTPAGE bzw hauptseite mit menübuttons
       <div className="App">
-        <div>
+        <h1 className="headerD" align="center">DayToPat</h1> 
+          <div>
               <BrowserRouter>
+              <li>
+                <button className="layoutBF">
+                    <Link to="/">Frontpage</Link>
+                </button>
+              </li>
+              <li>
+            <button className="layoutBC">
+                <Link to="/chat">Chat</Link>
+            </button>
+          </li>
+          <li>
+            <button className="layoutBP">
+                <Link to="/profile">Profile</Link>
+            </button>
+          </li>
                 <Routes>
-                  <Route path="/" element={<Layout/>} />
-                  <Route path="frontpage" element={<Frontpage/>} />    
-                  <Route path="chat" element={<Chat/>}/>
+                  <Route path="/" element={<Frontpage/>} />
+                  <Route path="chat" element={<Chat/>} />    
                 </Routes>
               </BrowserRouter>
               <h4 className="userMail" style={{"color": "white"}}> Eingeloggt: {user?.email}</h4>
