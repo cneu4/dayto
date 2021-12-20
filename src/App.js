@@ -7,16 +7,22 @@ import {
 } from "firebase/auth";
 import "./App.css"
 import { auth, db } from "./firebase-config";
-import SendMessage from './SendMessage'
-import { collection, query, where, onSnapshot, limit, orderBy, QuerySnapshot } from "firebase/firestore";
-import SignOut from "./SignOut";
-import { Route } from "react-router-dom";
+import { collection, query, onSnapshot, limit, orderBy} from "firebase/firestore";
+import Chat from "./Chat"
+import {
+  Switch,
+  Route,
+  Link,
+  Routes,
+  BrowserRouter,
+  MemoryRouter
+} from "react-router-dom";
 
 
 
 
 
-function App() {
+export default function App() {
   
   const [registerEmail, setRegisterEmail] = useState("");
   const [registerPassword, setRegisterPassword] = useState("");
@@ -100,9 +106,16 @@ function App() {
                       Dislike
                   </button>
               </div>
-              <button >
-                      Chat
-                  </button>
+              <BrowserRouter>
+              <Link to="Chat">
+                <button type="button">
+                  Chat
+                </button>
+              </Link>
+                <Routes>        
+                  <Route path="Chat" element={<Chat/>}/>
+                </Routes>
+              </BrowserRouter>
               <h4 style={{"color": "white"}}> Eingeloggt: {user?.email}</h4>
           </div>    
       </div>
@@ -172,4 +185,3 @@ function App() {
  
 
     
-  export default App;

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { db, auth } from './firebase-config'
 // import firebase from 'firebase'
 import { Input, Button } from '@material-ui/core'
-import { doc, serverTimestamp, setDoc, created } from "firebase/firestore"; 
+import { doc, setDoc  } from "firebase/firestore"; 
 import firebase from 'firebase/compat';
 
 function SendMessage({ scroll }) {
